@@ -1,6 +1,5 @@
-
 <template>
-  <div v-if="addFiles">
+  <div v-if="addFiles() === true">
     <input
       v-if="showFileInput"
       :id="'input' + _uid"
