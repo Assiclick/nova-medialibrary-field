@@ -1,9 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields\Support;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Contracts\Support\Arrayable;
 
 class AttachableMediaPresenter implements Arrayable
 {

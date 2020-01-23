@@ -10,8 +10,8 @@
       </div>
     </MediaListItemPreview>
 
-    <div v-if="media.title" class="dragging:hidden w-32 mt-1 px-2">
-      <p class="text-80 text-sm truncate">
+    <div v-if="media.title" class="dragging:hidden mt-1 px-2 pb-1 w-full">
+      <p class="text-80 text-sm">
         {{ media.title }}
       </p>
     </div>

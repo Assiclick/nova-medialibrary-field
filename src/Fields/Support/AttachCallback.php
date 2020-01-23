@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields\Support;
 
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 use Illuminate\Http\UploadedFile;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 
 class AttachCallback
 {

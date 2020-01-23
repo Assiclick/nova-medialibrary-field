@@ -27,7 +27,7 @@ export default {
 
   computed: {
     previewClassList() {
-      return this.context.field.detailsPreviewClassList || 'w-32 h-24 rounded-b'
+      return this.context.field.previewClass || 'w-32 h-24 rounded-b'
     },
   },
 }

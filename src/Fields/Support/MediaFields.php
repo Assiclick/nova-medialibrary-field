@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields\Support;
 
-use DmitryBubyakin\NovaMedialibraryField\Fields\GeneratedConversions;
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use DmitryBubyakin\NovaMedialibraryField\Fields\GeneratedConversions;
 
 class MediaFields
 {
@@ -16,26 +18,29 @@ class MediaFields
             return [
                 ID::make(),
 
-                Text::make('Filename', 'file_name')
+                Text::make(__('File'), 'file_name')
                     ->rules('required', 'min:2'),
 
-                Textarea::make('Description', 'custom_properties->description')->alwaysShow(),
+                Text::make(__('Name'), 'name')
+                    ->rules('required', 'min:2'),
 
-                Text::make('Disk')->exceptOnForms(),
+                Textarea::make(__('Description'), 'custom_properties->description')->alwaysShow(),
 
-                Text::make('Download Url', function () {
-                    return $this->resource->exists ? $this->resource->getFullUrl() : null;
-                }),
+                Text::make(__('Disk'), 'disk')->exceptOnForms(),
 
-                Text::make('Size')->displayUsing(function () {
+                Text::make(__('Download Url'), function () {
+                    return $this->resource->exists ? "<a href='{$this->resource->getFullUrl()}' target='_blank' class='no-underline font-bold dim text-primary'>{$this->resource->getFullUrl()}</a>" : null;
+                })->asHtml(),
+
+                Text::make(__('Size'))->displayUsing(function () {
                     return $this->resource->humanReadableSize;
                 })->exceptOnForms(),
 
-                Text::make('Updated At')->displayUsing(function () {
+                Text::make(__('Updated At'))->displayUsing(function () {
                     return $this->resource->updated_at->diffForHumans();
                 })->exceptOnForms(),
 
-                GeneratedConversions::make('Conversions'),
+                GeneratedConversions::make(__('Conversions')),
             ];
         };
     }

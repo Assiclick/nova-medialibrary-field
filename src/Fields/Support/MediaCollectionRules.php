@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields\Support;
 
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
-use Illuminate\Contracts\Validation\ImplicitRule;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ClosureValidationRule;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Validation\ClosureValidationRule;
+use Illuminate\Contracts\Validation\ImplicitRule;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 
 class MediaCollectionRules
 {

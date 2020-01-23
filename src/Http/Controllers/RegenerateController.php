@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\FileManipulator;
+use Illuminate\Http\JsonResponse;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\FileManipulator;
 
 class RegenerateController
 {

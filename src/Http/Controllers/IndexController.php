@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaPresenter;
-use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 use Illuminate\Http\JsonResponse;
 use Spatie\MediaLibrary\Models\Media;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaPresenter;
+use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
 
 class IndexController
 {

@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\Image\Manipulations;
+use Illuminate\Http\JsonResponse;
 use Spatie\MediaLibrary\Models\Media;
 
 class CropController

@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Resources;
 
-use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
-use Illuminate\Http\Request;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Resource;
+use Illuminate\Http\Request;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 
 class Media extends Resource
 {

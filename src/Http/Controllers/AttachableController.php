@@ -1,14 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
-use function DmitryBubyakin\NovaMedialibraryField\call_or_default;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\AttachableMediaPresenter;
-use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Builder;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
+use function DmitryBubyakin\NovaMedialibraryField\call_or_default;
+use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\AttachableMediaPresenter;
 
 class AttachableController
 {

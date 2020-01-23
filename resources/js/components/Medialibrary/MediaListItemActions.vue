@@ -1,14 +1,14 @@
 <template>
-  <div class="my-2 px-2 flex">
-    <button v-if="media.authorizedToView" type="button" class="flex text-70 hover:text-primary focus:outline-none" @click="media.view()">
+  <div class="my-2 px-2 flex" v-if="showActions">
+    <button v-if="showView" v-else-if="media.authorizedToView" type="button" class="flex text-70 hover:text-primary focus:outline-none" @click="media.view()">
       <icon type="view" view-box="0 0 22 14" width="17" height="14" />
     </button>
 
-    <button v-if="media.authorizedToUpdate" type="button" class="flex text-70 hover:text-primary focus:outline-none ml-2" @click="media.edit()">
+    <button v-if="showUpdate" v-else-if="media.authorizedToUpdate" type="button" class="flex text-70 hover:text-primary focus:outline-none ml-2" @click="media.edit()">
       <icon type="edit" view-box="0 0 20 20" width="14" height="14" />
     </button>
 
-    <button v-if="media.authorizedToDelete" type="button" class="flex text-70 hover:text-primary focus:outline-none ml-2" @click="media.openDeleteModal()">
+    <button v-if="showDelete" v-else-if="media.authorizedToDelete" type="button" class="flex text-70 hover:text-primary focus:outline-none ml-2" @click="media.openDeleteModal()">
       <icon type="delete" view-box="0 0 20 20" width="14" height="14" />
     </button>
 
@@ -49,11 +49,48 @@
 </template>
 
 <script>
+import { context } from './Context'
+
 export default {
   props: {
     media: {
       type: Object,
       required: true,
+    },
+  },
+
+  inject: {
+    context,
+  },
+
+  computed: {
+    showActions() {
+      var showActions = true
+      if (this.context.field.showActions === 'false') {
+        showActions = false
+      }
+      return showActions
+    },
+    showView() {
+      var showViewButton = true
+      if (this.context.field.showViewButton === 'false') {
+        showViewButton = false
+      }
+      return showViewButton
+    },
+    showUpdate() {
+      var showUpdateButton = true
+      if (this.context.field.showUpdateButton === 'false') {
+        showUpdateButton = false
+      }
+      return showUpdateButton
+    },
+    showDelete() {
+      var showDeleteButton = true
+      if (this.context.field.showDeleteButton === 'false') {
+        showDeleteButton = false
+      }
+      return showDeleteButton
     },
   },
 }

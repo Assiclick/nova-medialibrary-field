@@ -1,9 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Requests;
 
-use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
 
 class MedialibraryRequest extends NovaRequest
 {

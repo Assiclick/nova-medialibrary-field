@@ -1,18 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields\Support;
 
-use function DmitryBubyakin\NovaMedialibraryField\call_or_default;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Contracts\Support\Arrayable;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
+use function DmitryBubyakin\NovaMedialibraryField\call_or_default;
 
 class MediaPresenter implements Arrayable
 {
     private $media;
+
     private $field;
 
     public function __construct(Media $media, Medialibrary $field)

@@ -1,15 +1,17 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
-use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
-use Spatie\MediaLibrary\Filesystem\Filesystem;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\Helpers\TemporaryDirectory;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Filesystem\Filesystem;
+use Spatie\MediaLibrary\Helpers\TemporaryDirectory;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
+use DmitryBubyakin\NovaMedialibraryField\Http\Requests\MedialibraryRequest;
 
 class AttachController
 {
@@ -46,7 +48,7 @@ class AttachController
 
         $directory = TemporaryDirectory::create();
 
-        $temporaryFile = $directory->path('/').DIRECTORY_SEPARATOR.$media->file_name;
+        $temporaryFile = $directory->path('/') . DIRECTORY_SEPARATOR . $media->file_name;
 
         app(Filesystem::class)->copyFromMediaLibrary($media, $temporaryFile);
 

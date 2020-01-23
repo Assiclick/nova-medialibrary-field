@@ -1,22 +1,24 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
 
 namespace DmitryBubyakin\NovaMedialibraryField\Fields;
 
-use function DmitryBubyakin\NovaMedialibraryField\callable_or_default;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\AttachCallback;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaCollectionRules;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaFields;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaPresenter;
-use DmitryBubyakin\NovaMedialibraryField\TransientModel;
-use function DmitryBubyakin\NovaMedialibraryField\validate_args;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Field;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Route;
 use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use DmitryBubyakin\NovaMedialibraryField\TransientModel;
+use function DmitryBubyakin\NovaMedialibraryField\validate_args;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaFields;
+use function DmitryBubyakin\NovaMedialibraryField\callable_or_default;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\AttachCallback;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaPresenter;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Support\MediaCollectionRules;
 
 class Medialibrary extends Field
 {
@@ -185,7 +187,7 @@ class Medialibrary extends Field
     }
 
     /**
-     * @param string $conversion
+     * @param string              $conversion
      * @param array|callable|null $options
      */
     public function croppable($conversion, $options = null): self
@@ -255,17 +257,6 @@ class Medialibrary extends Field
         return $this->makeMediaCollectionRules($request, parent::getUpdateRules($request));
     }
 
-    protected function makeMediaCollectionRules(NovaRequest $request, array $rules): array
-    {
-        return [
-            $this->attribute => MediaCollectionRules::make(
-                $rules[$this->attribute],
-                $request,
-                $this->collectionName,
-            ),
-        ];
-    }
-
     public function resolve($resource, $attribute = null): void
     {
         $this->value = Str::uuid();
@@ -290,6 +281,25 @@ class Medialibrary extends Field
         });
     }
 
+    public function meta(): array
+    {
+        return array_merge([
+            'collectionName' => $this->collectionName,
+            'single' => $this->single,
+        ], $this->meta);
+    }
+
+    protected function makeMediaCollectionRules(NovaRequest $request, array $rules): array
+    {
+        return [
+            $this->attribute => MediaCollectionRules::make(
+                $rules[$this->attribute],
+                $request,
+                $this->collectionName,
+            ),
+        ];
+    }
+
     protected function fillAttribute(NovaRequest $request, $requestAttribute, $model, $attribute): callable
     {
         return function () use ($request, $attribute, $model): void {
@@ -306,13 +316,5 @@ class Medialibrary extends Field
                     ->update(['manipulations' => $media->manipulations]);
             }
         };
-    }
-
-    public function meta(): array
-    {
-        return array_merge([
-            'collectionName' => $this->collectionName,
-            'single' => $this->single,
-        ], $this->meta);
     }
 }
