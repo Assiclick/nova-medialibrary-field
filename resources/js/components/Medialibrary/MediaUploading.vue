@@ -1,5 +1,6 @@
+
 <template>
-  <div>
+  <div v-if="addFiles">
     <input
       v-if="showFileInput"
       :id="'input' + _uid"
@@ -173,6 +174,14 @@ export default {
 
     handleUploadFailed(media, error) {
       media.handleUploadFailed(error)
+    },
+
+    addFiles() {
+      var addFiles = true
+      if (this.context.field.addFiles === 'false') {
+        addFiles = false
+      }
+      return addFiles
     },
   },
 }
