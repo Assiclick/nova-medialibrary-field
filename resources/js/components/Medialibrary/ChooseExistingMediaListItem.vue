@@ -2,12 +2,12 @@
   <div
     v-tooltip="tooltip"
     :class="{
-      'relative group border border-50 rounded-full overflow-hidden': true,
+      'relative group border border-50 overflow-hidden': true,
       'shadow-media-chosen border-info-dark': chosen,
       'border-50': !chosen,
     }"
   >
-    <MediaPreview :media="media" class="w-24 h-24 shadow">
+    <MediaPreview :media="media" class="w-40 shadow">
       <span slot="fallback" class="text-90 text-xs truncate select-none">
         {{ media.extension.toUpperCase() }}
       </span>

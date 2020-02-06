@@ -25,7 +25,7 @@ class AttachableMediaPresenter implements Arrayable
             'fileName' => $this->media->file_name,
             'collectionName' => $this->media->collection_name,
             'extension' => $this->media->extension,
-            'previewUrl' => $this->media->getFullUrl(),
+            'previewUrl' => $this->media->getFullUrl('preview'),
         ]);
     }
 }
