@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace DmitryBubyakin\NovaMedialibraryField\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Spatie\MediaLibrary\Models\Media;
 use Illuminate\Database\Eloquent\Builder;
 use DmitryBubyakin\NovaMedialibraryField\TransientModel;
 use function DmitryBubyakin\NovaMedialibraryField\call_or_default;
@@ -35,7 +34,7 @@ class AttachableController
 
     private function buildQuery(MedialibraryRequest $request): Builder
     {
-        return Media::query()->when($request->input('name'), function (Builder $query, string $name): void {
+        return config('medialibrary.media_model')::query()->when($request->input('name'), function (Builder $query, string $name): void {
             $query->where(function (Builder $query) use ($name): void {
                 $query
                     ->where('name', 'like', "%{$name}%")

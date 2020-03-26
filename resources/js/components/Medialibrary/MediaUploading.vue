@@ -12,6 +12,9 @@
 
     <div class="mt-2 mb-3">
       <MediaUploadingList :media="media" />
+      <p v-if="validationFailed" class="text-danger text-sm mt-3">
+        {{ __('Validation failed. Hover media to see details.') }}
+      </p>
     </div>
 
     <label :for="'input' + _uid" class="form-file form-file-btn btn btn-default btn-primary">
@@ -80,6 +83,10 @@ export default {
     attachExistingButtonVisible() {
       return this.context.field.attachExisting
     },
+
+    validationFailed() {
+      return this.media.some(media => media.validationErrors.has('file'))
+    },
   },
 
   methods: {
@@ -90,6 +97,10 @@ export default {
 
       this.showFileInput = false
       this.$nextTick(() => this.showFileInput = true)
+
+      if (this.context.field.autouploading) {
+        this.upload()
+      }
     },
 
     addMedia(media) {
@@ -173,6 +184,10 @@ export default {
 
     handleUploadFailed(media, error) {
       media.handleUploadFailed(error)
+
+      if (media.validationErrors.has('file')) {
+        Nova.error(`${media.fileName}:<br>${media.validationErrors.get('file').join('<br>')}`)
+      }
     },
 
     addFiles() {
